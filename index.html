@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Vue</title>
+    <title>Youtube Jump</title>
     <style>
       .mb-5 {
         margin-bottom: 0.5rem
@@ -15,15 +15,22 @@
     </style>
   </head>
   <body>
+
+    
     <div id="app">
 
-      <div class="mb-5">
-        <input class="url" type="text" v-model="url" />
+      <div class="explain">
+        <h2>Youtube Jumper</h2>
+        <h3>Masukkan kata kunci dan pergi ke bagian video yang anda inginkan hanya dengan sekali klik.  </h3>
       </div>
 
       <div class="mb-5">
-        <input class="kataKunci" type="text" v-model="kataKunci" />
-        <button class="bersihkan" @click="bersihkan">Bersihkan</button>
+        Link: <input class="url" type="text" v-model="url" placeholder="Masukkan link youtube" />
+      </div>
+
+      <div class="mb-5">
+        Kata Kunci: <input class="kataKunci" type="text" v-model="kataKunci" placeholder="Masukkan kata kunci" />
+        <button class="clear" @click="clear">Clear</button>
       </div>
 
       <div class="mb-5">
@@ -58,7 +65,7 @@
       new Vue({
         el: '#app',
         data: {
-          url: 'https://www.youtube.com/watch?v=klnvttPfOUM',
+          url: '',
           kataKunci: '',
           daftarHasil: [],
           paginasi: {
@@ -105,7 +112,7 @@
             }
             await this.cari(this.kataKunci, this.url, this.paginasi[type])
           },
-          bersihkan() {
+          clear() {
             this.kataKunci = ''
             this.bersihkanHasilDanPaginasi()
           },
